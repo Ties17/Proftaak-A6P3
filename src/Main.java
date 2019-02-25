@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public class Main {
 
-    public static final String Json_File = "C:\\Users\\tiest\\Documents\\School\\Periode 3\\Proftaak FP\\Code via Git\\ProftaakA6P3-JsonReader\\Proftaak-A6P3\\src\\jsonFiles\\TI1.3Ontwerp3.json";
+    public static final String Json_File = "src/jsonFiles/TI1.3Ontwerp5.json";
 
     public static void main(String[] args) {
 

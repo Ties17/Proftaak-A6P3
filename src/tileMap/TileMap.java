@@ -43,7 +43,15 @@ public class TileMap {
         this.renderorder = jsonIO.getStringFromTag("renderorder");
         this.tiledVersipn = jsonIO.getStringFromTag("tiledversion");
         this.tileHeight = jsonIO.getIntFromTag("tileheight");
-        this.tileSets = tileSets;
+
+        JsonArray tilesetsJsonArray = jsonIO.getJsonArrayFromTag("tilesets");
+        ArrayList<TileSet> tileSetArrayList = new ArrayList<>();
+        for (JsonValue jsonValue : tilesetsJsonArray){
+            JsonObject jsonObject = (JsonObject) jsonValue;
+            tileSetArrayList.add(new TileSet(jsonObject));
+        }
+
+        this.tileSets = tileSetArrayList;
         this.tileWidth = jsonIO.getIntFromTag("tilewidth");
         this.type = jsonIO.getStringFromTag("map");
         this.version = jsonIO.getDoubleFromTag("version");

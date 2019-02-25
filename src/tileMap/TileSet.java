@@ -1,5 +1,7 @@
 package tileMap;
 
+import javax.json.JsonObject;
+
 public class TileSet {
 
     private int columns;
@@ -16,8 +18,8 @@ public class TileSet {
     private String type;
     private String version;
 
-    public TileSet(String filename){
-        JsonIO reader = new JsonIO(filename);
+    public TileSet(JsonObject jsonObject){
+        JsonIO reader = new JsonIO("test");
 
         this.columns = reader.getIntFromTag("columns");
         this.image = reader.getStringFromTag("image");

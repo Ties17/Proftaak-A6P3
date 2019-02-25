@@ -2,7 +2,10 @@ package tileMap;
 
 import java.util.ArrayList;
 
+
 public class TileMap {
+
+    private JsonIO jsonIO;
 
     private int height;
     private boolean infinite;
@@ -19,8 +22,9 @@ public class TileMap {
     private double version;
     private int width;
 
-    public TileMap(int height, boolean infinite, ArrayList<Layer> layers, int nextLayerId, int nextObjeectId, String orientation, String renderorder, String tiledVersipn, int tileHeight, ArrayList<TileSet> tileSets, int tileWidth, String type, double version, int width) {
-        this.height = height;
+    public TileMap(JsonIO jsonIO) {
+        this.jsonIO = jsonIO;
+        this.height = jsonIO.getIntFromTag("height");
         this.infinite = infinite;
         this.layers = layers;
         this.nextLayerId = nextLayerId;
@@ -34,6 +38,7 @@ public class TileMap {
         this.type = type;
         this.version = version;
         this.width = width;
+
     }
 
     public int getHeight() {
@@ -147,4 +152,9 @@ public class TileMap {
     public void setWidth(int width) {
         this.width = width;
     }
+
+
+
+
+
 }

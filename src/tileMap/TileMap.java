@@ -171,8 +171,24 @@ public class TileMap {
         this.width = width;
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "TileMap{" +
+                "jsonIO=" + jsonIO +
+                ", height=" + height +
+                ", infinite=" + infinite +
+                ", layers=" + layers +
+                ", nextLayerId=" + nextLayerId +
+                ", nextObjeectId=" + nextObjeectId +
+                ", orientation='" + orientation + '\'' +
+                ", renderorder='" + renderorder + '\'' +
+                ", tiledVersipn='" + tiledVersipn + '\'' +
+                ", tileHeight=" + tileHeight +
+                ", tileSets=" + tileSets +
+                ", tileWidth=" + tileWidth +
+                ", type='" + type + '\'' +
+                ", version=" + version +
+                ", width=" + width +
+                '}';
+    }
 }

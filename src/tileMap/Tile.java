@@ -7,7 +7,7 @@ public class Tile {
     private int tileID;
     private Image image;
 
-    public Tile(){
+    public Tile(int tileID, Image image){
         
     }
 

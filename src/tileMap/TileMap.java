@@ -1,6 +1,9 @@
 package tileMap;
 
-
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonValue;
 import java.util.ArrayList;
 
 
@@ -26,7 +29,12 @@ public class TileMap {
     public TileMap(JsonIO jsonIO) {
         this.jsonIO = jsonIO;
         this.height = jsonIO.getIntFromTag("height");
-        this.infinite = infinite;
+        this.infinite = jsonIO.getBooleanFromTag("infinite");
+        JsonArray layers = jsonIO.getJsonArrayFromTag("layers");
+        for (JsonValue jsonValue : layers){
+            JsonObject jsonObject = (JsonObject) jsonValue;
+            
+        }
         this.layers = layers;
         this.nextLayerId = nextLayerId;
         this.nextObjeectId = nextObjeectId;

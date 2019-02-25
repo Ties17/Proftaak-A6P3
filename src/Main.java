@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public class Main {
 
-    public static final String Json_File = "C:\\Users\\tiest\\Documents\\School\\Periode 3\\Proftaak FP\\Code via Git\\ProftaakA6P3-JsonReader\\Proftaak-A6P3\\src\\jsonFiles\\Yowhatup.json";
+    public static final String Json_File = "C:\\Users\\tiest\\Documents\\School\\Periode 3\\Proftaak FP\\Code via Git\\ProftaakA6P3-JsonReader\\Proftaak-A6P3\\src\\jsonFiles\\TI1.3Ontwerp3.json";
 
     public static void main(String[] args) {
 
@@ -16,8 +16,9 @@ public class Main {
         ) {
             JsonObject jsonObject = jsonReader.readObject();
 
-            for ( String name: jsonObject.keySet()){
 
+            for ( String name: jsonObject.keySet()){
+                System.out.println(jsonObject.get(name));
                 switch (jsonObject.get(name).getValueType()){
                     case ARRAY:
                     case NUMBER:

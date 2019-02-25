@@ -16,13 +16,8 @@ public class Layer {
         private int x;
         private int y;
 
-        public Layer(JsonArray data, int height, int id, String name, int opacity, String type, boolean visible, int width, int x, int y) {
-            this.data = new int[data.size()];
-
-            for (int i = 0; i < data.size(); i++){
-                this.data[i] = data.getJsonNumber(i).intValue();
-            }
-
+        public Layer(JsonArray layer) {
+           
             this.height = height;
             this.id = id;
             this.name = name;

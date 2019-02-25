@@ -31,22 +31,23 @@ public class TileMap {
         this.height = jsonIO.getIntFromTag("height");
         this.infinite = jsonIO.getBooleanFromTag("infinite");
         JsonArray layers = jsonIO.getJsonArrayFromTag("layers");
+        ArrayList<Layer> layerArrayList = new ArrayList<>();
         for (JsonValue jsonValue : layers){
             JsonObject jsonObject = (JsonObject) jsonValue;
-            
+            layerArrayList.add(new Layer(jsonObject));
         }
-        this.layers = layers;
-        this.nextLayerId = nextLayerId;
-        this.nextObjeectId = nextObjeectId;
-        this.orientation = orientation;
-        this.renderorder = renderorder;
-        this.tiledVersipn = tiledVersipn;
-        this.tileHeight = tileHeight;
+        this.layers = layerArrayList;
+        this.nextLayerId = jsonIO.getIntFromTag("nextlayerid");
+        this.nextObjeectId = jsonIO.getIntFromTag("nextobjectid");
+        this.orientation = jsonIO.getStringFromTag("orientation");
+        this.renderorder = jsonIO.getStringFromTag("renderorder");
+        this.tiledVersipn = jsonIO.getStringFromTag("tiledversion");
+        this.tileHeight = jsonIO.getIntFromTag("tileheight");
         this.tileSets = tileSets;
-        this.tileWidth = tileWidth;
-        this.type = type;
-        this.version = version;
-        this.width = width;
+        this.tileWidth = jsonIO.getIntFromTag("tilewidth");
+        this.type = jsonIO.getStringFromTag("map");
+        this.version = jsonIO.getDoubleFromTag("version");
+        this.width = jsonIO.getIntFromTag("width");
 
     }
 

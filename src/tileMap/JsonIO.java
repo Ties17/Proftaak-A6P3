@@ -8,72 +8,19 @@ import java.io.InputStream;
 
 public class JsonIO {
 
-    private  JsonObject jsonObject;
+    private JsonObject jsonObject;
 
     public JsonIO(String filename) {
-        readJsonFile(filename);
-    }
-
-    public void readJsonFile(String filename){
-        try (
-                InputStream inputStream = new FileInputStream(filename);
-                JsonReader jsonReader = Json.createReader(inputStream);
-        ) {
-           jsonObject = jsonReader.readObject();
-
-            IteratingTroughJsonObject(jsonObject);
-
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filename);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-    }
+        JsonReader jsonReader = Json.createReader(inputStream);
 
-    private void IteratingTroughJsonObject(JsonObject jsonObject){
+        jsonObject = jsonReader.readObject();
 
-        for (String name : jsonObject.keySet()){
-            switch (jsonObject.get(name).getValueType()){
-                case ARRAY:
-                    JsonArray jsonArray = (JsonArray)jsonObject.get(name);
-                    System.out.println(name + ": " );
-                    jsonObjectReadingOutArray(jsonArray);
-                    break;
-                case NUMBER:
-                    System.out.println(name + ": " + jsonObject.get(name));
-                    break;
-                case OBJECT:
-                    System.out.println(name + ": ");
-                    IteratingTroughJsonObject((JsonObject)jsonObject.get(name));
-
-                    break;
-                case STRING:
-                    System.out.println(name + ": " + jsonObject.get(name));
-                    break;
-                case NULL:
-                    System.out.println(name + ": " + jsonObject.get(name));
-                    break;
-                case TRUE:
-                    System.out.println(name + ": " + jsonObject.get(name));
-                    break;
-                case FALSE:
-                    System.out.println(name + ": " + jsonObject.get(name));
-                    break;
-                default:
-                    System.out.println("Jo boi dr gaat iets mis");
-                    break;
-            }
-        }
-    }
-
-    public void jsonObjectReadingOutArray(JsonArray jsonArray){
-        for (JsonValue jsonValue : jsonArray){
-            if (jsonValue.getValueType().equals("OBJECT")){
-                IteratingTroughJsonObject((JsonObject) jsonValue);
-            } else {
-                System.out.println(jsonValue);
-            }
-        }
     }
 
     public JsonValue getJsonValueFromTag(String tag){

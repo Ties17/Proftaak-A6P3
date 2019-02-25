@@ -4,6 +4,9 @@ import javax.json.JsonObject;
 
 public class TileSet {
 
+    private int firstgid;
+    private String source;
+
     private int columns;
     private String image;
     private int imageHeight;
@@ -18,8 +21,13 @@ public class TileSet {
     private String type;
     private String version;
 
-    public TileSet(JsonObject jsonObject){
-        JsonIO reader = new JsonIO("test");
+    public TileSet(JsonObject data){
+
+        firstgid = data.getInt("firstgid");
+        source = data.getString("source");
+
+
+        JsonIO reader = new JsonIO(source);
 
         this.columns = reader.getIntFromTag("columns");
         this.image = reader.getStringFromTag("image");

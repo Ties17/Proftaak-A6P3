@@ -2,6 +2,7 @@ package tileMap;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import java.awt.*;
 import java.util.Arrays;
 
 public class Layer {
@@ -30,6 +31,12 @@ public class Layer {
             this.x = layer.getInt("x");
             this.y = layer.getInt("y");
 
+        }
+
+        public void draw(Graphics2D g2d){
+            for(int i = 0; i < data.size(); i++){
+                data.getInt(i);
+            }
         }
 
     public JsonArray getData() {

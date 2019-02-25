@@ -1,6 +1,13 @@
 package tileMap;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.json.JsonObject;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class TileSet {
 
@@ -20,6 +27,8 @@ public class TileSet {
     private int tileWidth;
     private String type;
     private String version;
+
+    private ArrayList<Tile> tiles;
 
     public TileSet(JsonObject data){
 
@@ -42,14 +51,26 @@ public class TileSet {
         this.tileWidth = reader.getIntFromTag("tilewidth");
         this.type = reader.getStringFromTag("type");
         this.version = reader.getStringFromTag("version");
+
+        try {
+            createTiles();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int getColumns() {
-        return columns;
-    }
+    public void createTiles() throws IOException {
 
-    public void setColumns(int columns) {
-        this.columns = columns;
+        Image tilesImage =  ImageIO.read(this.getClass().getResource(image));
+        int stepSizeX = this.tileWidth;
+        int stepSizeY = this.tileHeight;
+
+        for(int i = 0; i < this.columns; i++){
+            for(int j = 0; j < imageWidth/(tileWidth + spacing); j++){
+                BufferedImage tileImage = ((BufferedImage) tilesImage).getSubimage(stepSizeX*j, stepSizeY*i, stepSizeX*j + stepSizeX,  stepSizeY*i + stepSizeY);
+                tiles.add(new Tile(this.firstgid + i, tileImage));
+            }
+        }
     }
 
     public String getImage() {
@@ -72,16 +93,8 @@ public class TileSet {
         return imageWidth;
     }
 
-    public void setImageWidth(int imageWidth) {
-        this.imageWidth = imageWidth;
-    }
-
     public int getMargin() {
         return margin;
-    }
-
-    public void setMargin(int margin) {
-        this.margin = margin;
     }
 
     public String getName() {
@@ -96,55 +109,31 @@ public class TileSet {
         return spacing;
     }
 
-    public void setSpacing(int spacing) {
-        this.spacing = spacing;
-    }
-
     public int getTileCount() {
         return tileCount;
-    }
-
-    public void setTileCount(int tileCount) {
-        this.tileCount = tileCount;
     }
 
     public String getTiledVersion() {
         return tiledVersion;
     }
 
-    public void setTiledVersion(String tiledVersion) {
-        this.tiledVersion = tiledVersion;
-    }
-
     public int getTileHeight() {
         return tileHeight;
-    }
-
-    public void setTileHeight(int tileHeight) {
-        this.tileHeight = tileHeight;
     }
 
     public int getTileWidth() {
         return tileWidth;
     }
 
-    public void setTileWidth(int tileWidth) {
-        this.tileWidth = tileWidth;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    void setVersion(String version) {
         this.version = version;
     }
 }
